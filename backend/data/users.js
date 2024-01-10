@@ -44,7 +44,7 @@ export const sellers = [
         email: "fakeman@gmail.com",
         password: bcrypt.hashSync("fakeman1234", 10),
         shopAddress: {
-            address: "Xyz street",
+            street: "Xyz street",
             postalCode: "123456",
             city: "Abc",
             country: "Xyz",
@@ -59,7 +59,7 @@ export const sellers = [
         email: "johndoe@gmail.com",
         password: bcrypt.hashSync("johndoe1234", 10),
         shopAddress: {
-            address: "Abc street",
+            street: "Abc street",
             postalCode: "123456",
             city: "Opq",
             country: "Xyz",
@@ -74,7 +74,7 @@ export const sellers = [
         shopName: "xyz pvt ltd",
         password: bcrypt.hashSync("jakedoe1234", 10),
         shopAddress: {
-            address: "Mno street",
+            street: "Mno street",
             postalCode: "123456",
             city: "Pqr",
             country: "Xyz",

@@ -29,7 +29,7 @@ const CartScreen = () => {
     };
 
     const checkoutHandler = () => {
-        navigate("/login?redirect=/shipping");
+        navigate("/login?redirect=/checkout");
     };
 
     return (
@@ -54,7 +54,7 @@ const CartScreen = () => {
                                             style={{
                                                 border: "1px solid lightGrey",
                                             }}
-                                            fuild
+                                            fuild="true"
                                             rounded
                                         />
                                     </Col>

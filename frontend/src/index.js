@@ -20,6 +20,8 @@ import UserRegisterScreen from "screens/UserRegisterScreen.jsx";
 import SellerRegisterScreen from "screens/SellerRegisterScreen.jsx";
 import ForgotPasswordScreen from "screens/ForgotPasswordScreen.jsx";
 import PasswordResetScreen from "screens/PasswordResetScreen.jsx";
+import CheckoutScreen from "screens/CheckoutScreen.jsx";
+import UpdateAddressScreen from "screens/UpdateAddressScreen.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -33,6 +35,8 @@ const router = createBrowserRouter(
             <Route path="/seller/register" element={<SellerRegisterScreen />} />
             <Route path="/forgotPassword" element={<ForgotPasswordScreen />} />
             <Route path="/resetPassword" element={<PasswordResetScreen />} />
+            <Route path="/checkout" element={<CheckoutScreen />} />
+            <Route path="/address/u" element={<UpdateAddressScreen />} />
         </Route>
     )
 );

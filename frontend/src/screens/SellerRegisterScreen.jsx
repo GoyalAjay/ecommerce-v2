@@ -4,7 +4,7 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "components/FormContainer";
 import Loader from "components/Loader";
-import { useRegisterMutation } from "slices/usersApiSlice";
+import { useSellerRegisterMutation } from "slices/SellerApiSlice";
 import { setCredentials } from "slices/authSlice";
 import { toast } from "react-toastify";
 
@@ -15,6 +15,8 @@ const SellerRegisterScreen = () => {
     const [street, setStreet] = useState("");
     const [postalCode, setPostalCode] = useState("");
     const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const country = "India";
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -27,7 +29,7 @@ const SellerRegisterScreen = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [register, { isLoading }] = useRegisterMutation();
+    const [sellerRegister, { isLoading }] = useSellerRegisterMutation();
 
     const { userInfo } = useSelector((state) => state.auth);
 
@@ -58,6 +60,7 @@ const SellerRegisterScreen = () => {
                 !street ||
                 !postalCode ||
                 !city ||
+                !state ||
                 !email ||
                 !password ||
                 !confirmPassword ||
@@ -70,11 +73,19 @@ const SellerRegisterScreen = () => {
                 return;
             }
             try {
-                const res = await register({
+                const res = await sellerRegister({
                     firstName,
                     lastName,
+                    shopName,
                     email,
                     password,
+                    street,
+                    postalCode,
+                    city,
+                    state,
+                    country,
+                    phoneNumber,
+                    isSeller: true,
                 }).unwrap();
                 dispatch(setCredentials({ ...res }));
                 navigate(redirect);
@@ -261,17 +272,39 @@ const SellerRegisterScreen = () => {
                         </Form.Group>
                     </Col>
                     <Col>
-                        <Form.Group controlId="country" className="mt-3">
-                            <Form.Label>Country</Form.Label>
+                        <Form.Group controlId="state" className="mt-3">
+                            <Form.Label>State</Form.Label>
                             <Form.Control
+                                className={`form-control ${
+                                    state ? "" : errorClass
+                                }`} // Add error class if empty
+                                aria-invalid={!state} // Indicate invalid state for assistive technologies
                                 type="text"
-                                placeholder="Enter last name"
-                                value="India"
-                                disabled
+                                placeholder="Enter State"
+                                value={state}
+                                onChange={(e) => setState(e.target.value)}
                             />
+                            {!state ? (
+                                isErrorMessage ? (
+                                    <Form.Text
+                                        id="state"
+                                        className="text-danger"
+                                    >
+                                        State {errorMessage}
+                                    </Form.Text>
+                                ) : (
+                                    ""
+                                )
+                            ) : (
+                                ""
+                            )}
                         </Form.Group>
                     </Col>
                 </Row>
+                <Form.Group controlId="country" className="mt-3">
+                    <Form.Label>Country</Form.Label>
+                    <Form.Control type="text" value={country} disabled />
+                </Form.Group>
                 <Form.Group controlId="email" className="my-3">
                     <Form.Label>Email Address</Form.Label>
                     <Form.Control

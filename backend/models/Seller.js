@@ -53,7 +53,7 @@ sellerSchema.methods.matchPassword = async function (enteredPassword) {
 };
 
 sellerSchema.pre("save", async function (next) {
-    if (!this.isModified(this.password)) {
+    if (!this.isModified("password")) {
         next();
     }
 

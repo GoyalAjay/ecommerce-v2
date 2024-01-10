@@ -68,6 +68,7 @@ const UserRegisterScreen = () => {
                     lastName,
                     email,
                     password,
+                    phoneNumber,
                 }).unwrap();
                 dispatch(setCredentials({ ...res }));
                 navigate(redirect);

@@ -17,7 +17,7 @@ const SellerLoginScreen = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [login, { isLoading }] = useSellerLoginMutation();
+    const [sellerLogin, { isLoading }] = useSellerLoginMutation();
 
     const { userInfo } = useSelector((state) => state.auth);
 
@@ -32,7 +32,7 @@ const SellerLoginScreen = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            const res = await login({ email, password }).unwrap();
+            const res = await sellerLogin({ email, password }).unwrap();
             dispatch(setCredentials({ ...res }));
             navigate(redirect);
         } catch (err) {
